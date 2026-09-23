@@ -12,8 +12,7 @@
   --animate-rise: rise 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) both;
   --animate-fade: fade 1.4s ease-out both;
   --animate-hero-zoom: hero-zoom 2.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-  --animate-float: float 7s ease-in-out infinite;
-  --animate-orbit: orbit 16s linear infinite;
+  --animate-word: word 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
   --animate-wave: wave 1.1s ease-in-out infinite;
 
   @keyframes rise {
@@ -42,18 +41,16 @@
       transform: scale(1);
     }
   }
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0);
+  @keyframes word {
+    from {
+      opacity: 0;
+      filter: blur(6px);
+      transform: translateY(4px);
     }
-    50% {
-      transform: translateY(-8px);
-    }
-  }
-  @keyframes orbit {
     to {
-      transform: rotate(360deg);
+      opacity: 1;
+      filter: none;
+      transform: none;
     }
   }
   @keyframes wave {
@@ -78,26 +75,68 @@ body {
   font-family: var(--font-sans);
 }
 
-/* Film grain, echoing the noise texture on the original illustrations */
-@utility grain {
-  &::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    mix-blend-mode: overlay;
-    opacity: 0.22;
-  }
-}
-
 /* Hero headline scales with both width and height so it always fits the fold */
 @utility text-hero {
-  font-size: clamp(44px, min(7.2vw, 11.2svh), 118px);
+  font-size: clamp(44px, min(6.8vw, 10.4svh), 112px);
 }
 
 @utility text-display {
   font-size: clamp(40px, 4.9vw, 76px);
+}
+
+/* Video scrubber: thin track, lime progress, knob on hover */
+.video-range {
+  --progress: 0%;
+  appearance: none;
+  height: 16px;
+  background: transparent;
+  cursor: pointer;
+}
+.video-range::-webkit-slider-runnable-track {
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    var(--color-lime) var(--progress),
+    rgb(255 255 255 / 0.25) var(--progress)
+  );
+}
+.video-range::-moz-range-track {
+  height: 3px;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.25);
+}
+.video-range::-moz-range-progress {
+  height: 3px;
+  border-radius: 999px;
+  background: var(--color-lime);
+}
+.video-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 13px;
+  height: 13px;
+  margin-top: -5px;
+  border-radius: 999px;
+  background: #fff;
+  transform: scale(0);
+  transition: transform 0.2s;
+}
+.video-range::-moz-range-thumb {
+  width: 13px;
+  height: 13px;
+  border: 0;
+  border-radius: 999px;
+  background: #fff;
+  transform: scale(0);
+  transition: transform 0.2s;
+}
+.video-range:hover::-webkit-slider-thumb,
+.video-range:focus-visible::-webkit-slider-thumb {
+  transform: scale(1);
+}
+.video-range:hover::-moz-range-thumb,
+.video-range:focus-visible::-moz-range-thumb {
+  transform: scale(1);
 }
 
 /* Scroll-linked reveal where supported; static everywhere else */

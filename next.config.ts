@@ -2,13 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-        pathname: "/**",
-      },
-    ],
+    loader: "custom",
+    loaderFile: "./lib/image-loader.ts",
+    qualities: [75, 90],
   },
 };
 
