@@ -54,6 +54,20 @@ export const photos = {
     src: unsplash("photo-1724531281596-cfae90d5a082"),
     alt: "",
   },
+
+  // Version 2
+  v2Hero: {
+    src: unsplash("photo-1779043151848-784c1bc6c780"),
+    alt: "Agriculteur inspectant une grande parcelle de blé",
+  },
+  v2Statement: {
+    src: unsplash("photo-1596753365498-2d23bbfcbc24"),
+    alt: "Exploitation agricole et rampe d'irrigation sous un ciel d'orage",
+  },
+  v2StageFarmer: {
+    src: unsplash("photo-1779043151813-11e8987464aa"),
+    alt: "Agriculteur au bord des passages de pulvérisateur dans un champ de blé",
+  },
 } satisfies Record<string, Photo | Photo[]>;
 
 /**

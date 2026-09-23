@@ -118,7 +118,8 @@ export function HeroNav() {
 }
 
 /** Compact glass bar that takes over once the hero has scrolled away. */
-export function StickyNav() {
+export function StickyNav({ theme = "light" }: { theme?: "light" | "dark" }) {
+  const dark = theme === "dark";
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -137,10 +138,12 @@ export function StickyNav() {
       className={`fixed inset-x-0 top-3 z-50 flex justify-center px-3 transition duration-500 ease-[cubic-bezier(.2,.7,.2,1)] ${visible ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-6 opacity-0"}`}
       inert={!visible}
     >
-      <div className="flex h-14 w-full max-w-[980px] items-center justify-between gap-6 rounded-full bg-white/80 pl-6 pr-2 shadow-[0_12px_40px_-16px_rgba(25,27,29,0.35)] ring-1 ring-ink/10 backdrop-blur-xl">
-        <Logo className="text-ink" />
+      <div
+        className={`flex h-14 w-full max-w-[980px] items-center justify-between gap-6 rounded-full pl-6 pr-2 shadow-[0_12px_40px_-16px_rgba(25,27,29,0.35)] backdrop-blur-xl ${dark ? "bg-ink/80 ring-1 ring-white/10" : "bg-white/80 ring-1 ring-ink/10"}`}
+      >
+        <Logo className={dark ? "text-white" : "text-ink"} />
         <div className="hidden md:block">
-          <NavLinks tone="dark" />
+          <NavLinks tone={dark ? "light" : "dark"} />
         </div>
         <BookDemo />
       </div>

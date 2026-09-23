@@ -8,6 +8,8 @@
   --color-clay: #595252;
   --color-stone: #595652;
   --color-mist: #f2f2f1;
+  /* brand lime lifted 40% toward white, for large light surfaces */
+  --color-lime-soft: #e3f794;
 
   --animate-rise: rise 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) both;
   --animate-fade: fade 1.4s ease-out both;
@@ -82,6 +84,15 @@ body {
 
 @utility text-display {
   font-size: clamp(40px, 4.9vw, 76px);
+}
+
+/* Version 2 poster type — sized to the width of its @container column */
+@utility text-poster {
+  font-size: min(38cqi, 28svh);
+}
+
+@utility text-poster-sub {
+  font-size: clamp(20px, 5.6cqi, 40px);
 }
 
 /* Video scrubber: thin track, lime progress, knob on hover */

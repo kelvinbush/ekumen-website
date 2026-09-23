@@ -25,10 +25,16 @@ export function Logo({ className = "" }: { className?: string }) {
 }
 
 /** The circular arrow used on the original site's primary CTA. */
-export function ArrowCircle({ className = "" }: { className?: string }) {
+export function ArrowCircle({
+  tone = "ink",
+  className = "",
+}: {
+  tone?: "ink" | "lime";
+  className?: string;
+}) {
   return (
     <span
-      className={`grid size-9 shrink-0 place-items-center rounded-full bg-ink text-white transition-transform duration-500 group-hover:-rotate-45 ${className}`}
+      className={`grid size-9 shrink-0 place-items-center rounded-full transition-transform duration-500 group-hover:-rotate-45 ${tone === "lime" ? "bg-lime text-ink" : "bg-ink text-white"} ${className}`}
       aria-hidden="true"
     >
       <svg viewBox="0 0 24 24" className="size-[18px]" fill="currentColor">
