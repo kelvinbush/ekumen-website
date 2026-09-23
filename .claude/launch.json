@@ -1,0 +1,15 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "ekumen-dev",
+      "url": "http://localhost:3000"
+    },
+    {
+      "name": "ekumen-prod",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["next", "start", "-p", "3100"],
+      "port": 3100
+    }
+  ]
+}
